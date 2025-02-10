@@ -161,6 +161,85 @@ int main() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+    uint16_t question_num1 = htons(1);
+    sendCommand(clientSocket, &question_num1, sizeof(question_num1));
+    std::string question1 = recvStr(clientSocket);
+    std::cout  << question1 << std::endl;
+    std::string answer1;
+    std::cout << "Enter your answer: ";
+    std::cin.ignore();
+    std::getline(std::cin, answer1);
+    uint32_t answerLength1 = htonl(answer1.size());
+    sendCommand(clientSocket, &answerLength1, sizeof(answerLength1));
+    sendCommand(clientSocket, answer1.c_str(), answer1.size());
+    std::cout << recvStr(clientSocket) << std::endl;
+
+    uint16_t question_num2 = htons(2);
+    sendCommand(clientSocket, &question_num2, sizeof(question_num2));
+    std::string question2 = recvStr(clientSocket);
+    std::cout <<  question2 << std::endl;
+    std::string answer2;
+    std::cout << "Enter your answer:";
+    std::getline(std::cin, answer2);
+    uint32_t answerLength2 = htonl(answer2.size());
+    sendCommand(clientSocket, &answerLength2, sizeof(answerLength2));
+    sendCommand(clientSocket, answer2.c_str(), answer2.size());
+    std::cout <<  recvStr(clientSocket) << std::endl;
+
+    uint16_t question_num3 = htons(3);
+    sendCommand(clientSocket, &question_num3, sizeof(question_num3));
+    std::string question3 = recvStr(clientSocket);
+    std::cout  << question3 << std::endl;
+    std::string answer3;
+    std::cout << "Enter your answer:";
+    std::getline(std::cin, answer3);
+    uint32_t answerLength3 = htonl(answer3.size());
+    sendCommand(clientSocket, &answerLength3, sizeof(answerLength3));
+    sendCommand(clientSocket, answer3.c_str(), answer3.size());
+    std::cout <<  recvStr(clientSocket) << std::endl;
+
+
+    uint16_t question_num4 = htons(4);
+    sendCommand(clientSocket, &question_num4, sizeof(question_num4));
+    std::string question4 = recvStr(clientSocket);
+    std::cout << question4 << std::endl;
+    std::string answer4;
+    std::cout << "Enter your answer: ";
+    std::getline(std::cin, answer4);
+    uint32_t answerLength4 = htonl(answer4.size());
+    sendCommand(clientSocket, &answerLength4, sizeof(answerLength4));
+    sendCommand(clientSocket, answer4.c_str(), answer4.size());
+    std::cout  << recvStr(clientSocket) << std::endl;
+
+
+    uint16_t questionID5 = htons(5);
+    sendCommand(clientSocket, &questionID5, sizeof(questionID5));
+    std::string question5 = recvStr(clientSocket);
+    std::cout  << question5 << std::endl;
+    std::string answer5;
+    std::cout << "Enter your answer:";
+    std::getline(std::cin, answer5);
+    uint32_t answerLength5 = htonl(answer5.size());
+    sendCommand(clientSocket, &answerLength5, sizeof(answerLength5));
+    sendCommand(clientSocket, answer5.c_str(), answer5.size());
+    std::cout   << recvStr(clientSocket) << std::endl;
+
+
+
+
+    std::cout << "server" << recvStr(clientSocket) << std::endl;
+
+
     close(clientSocket);
     return 0;
 
