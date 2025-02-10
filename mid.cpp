@@ -31,7 +31,25 @@ if (bytesRead <= 0) {
     exit(1);
 }
 
+
 }
+
+
+
+std:: string recvStr(int clientSoket) {
+
+    uint32_t len ;
+    recvData(clientSoket, &len, sizeof(len));
+    len = ntohl(len);
+    char buffer[BUFFER_SIZE] = {0};
+    recvData(clientSoket, buffer, len);
+
+    return std::string(buffer);
+
+
+}
+
+
 
 
 
@@ -132,8 +150,13 @@ int main() {
     sendCommand(clientSocket, my_lastname.c_str(), my_lastname.size());
 
 
+    uint8_t variant = 0x12;
+    sendCommand(clientSocket, &variant, sizeof(variant));
+    std::cout << "send--" << std::hex << (int)variant << std::endl;
 
 
+    std::string response = recvStr(clientSocket);
+    std::cout << response << std::endl;
 
 
 
