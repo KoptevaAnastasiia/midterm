@@ -76,6 +76,68 @@ int main() {
 
     sendCommand(clientSocket, &connectionID, sizeof( connectionID));
 
+
+
+
+
+
+
+    uint32_t messeg_name_lendth;
+    recvData(clientSocket, &messeg_name_lendth, sizeof(messeg_name_lendth));
+    messeg_name_lendth = ntohl(messeg_name_lendth);
+
+    char buffer[messeg_name_lendth + 1];
+    recvData(clientSocket, buffer, messeg_name_lendth);
+    buffer[messeg_name_lendth] = '\0';
+
+    std::cout << buffer << std::endl;
+
+
+    std::string my_name;
+    std::cout << "Enter your name: ";
+
+    std::cin >> my_name;
+
+
+    uint32_t name_length = htonl(my_name.size());
+    sendCommand(clientSocket, &name_length, sizeof(name_length));
+
+    sendCommand(clientSocket, my_name.c_str(), my_name.size());
+
+
+
+
+
+
+    uint32_t messeg_lastname_lendth;
+    recvData(clientSocket, &messeg_lastname_lendth, sizeof(messeg_lastname_lendth));
+    messeg_lastname_lendth = ntohl(messeg_lastname_lendth);
+
+    char buffer_lastname[messeg_lastname_lendth + 1];
+    recvData(clientSocket, buffer_lastname, messeg_lastname_lendth);
+    buffer_lastname[messeg_lastname_lendth] = '\0';
+
+    std::cout << buffer_lastname << std::endl;
+
+
+    std::string my_lastname;
+    std::cout << "Enter your lastname: ";
+
+    std::cin >> my_lastname;
+
+
+    uint32_t lastname_length = htonl(my_lastname.size());
+    sendCommand(clientSocket, &lastname_length, sizeof(lastname_length));
+
+    sendCommand(clientSocket, my_lastname.c_str(), my_lastname.size());
+
+
+
+
+
+
+
+
     close(clientSocket);
     return 0;
 
